@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solicitud de Eliminación de Datos - Dinely">
+    <title>Eliminación de Datos - Dinely</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .app-name {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #667eea;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .danger-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .form-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-3px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header .app-name {
+                font-size: 2.2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="app-name">💰 Dinely</div>
+            <h1>Eliminación de Datos</h1>
+            <p>Gestiona tu información personal</p>
+        </div>
+
+        <div class="content">
+            <div class="info-box">
+                <strong>📌 Importante:</strong> Esta página te permite solicitar la eliminación completa de tus datos personales y financieros de Dinely.
+            </div>
+
+            <h2>Tu Derecho a la Eliminación de Datos</h2>
+            
+            <p>
+                De acuerdo con las leyes de protección de datos (Ley N° 29733 de Perú y GDPR), 
+                tienes el derecho de solicitar la eliminación completa de tu información personal 
+                almacenada en <strong>Dinely</strong>.
+            </p>
+
+            <h2>¿Qué Datos se Eliminarán?</h2>
+
+            <p>Al solicitar la eliminación de tu cuenta, se eliminarán permanentemente:</p>
+
+            <ul>
+                <li><strong>Información de cuenta:</strong> Nombre, correo electrónico, contraseña</li>
+                <li><strong>Datos financieros:</strong> Todas tus transacciones, ingresos y gastos</li>
+                <li><strong>Cuentas bancarias:</strong> Nombres y saldos registrados</li>
+                <li><strong>Presupuestos:</strong> Todos tus presupuestos y límites</li>
+                <li><strong>Objetivos:</strong> Metas de ahorro y progreso</li>
+                <li><strong>Deudas:</strong> Información de préstamos y pagos</li>
+                <li><strong>Reportes:</strong> Estadísticas y análisis generados</li>
+                <li><strong>Preferencias:</strong> Configuraciones y personalizaciones</li>
+            </ul>
+
+            <div class="danger-box">
+                <p><strong>⚠️ Advertencia:</strong> Esta acción es <strong>irreversible</strong>. Una vez eliminados, 
+                tus datos no podrán ser recuperados. Asegúrate de exportar cualquier información importante antes de continuar.</p>
+            </div>
+
+            <h2>Plazos de Eliminación</h2>
+
+            <div class="highlight-box">
+                <h3>Cronograma de Eliminación</h3>
+                <ul>
+                    <li><strong>Inmediato:</strong> Acceso a tu cuenta deshabilitado</li>
+                    <li><strong>24-48 horas:</strong> Datos personales eliminados de la base de datos activa</li>
+                    <li><strong>30 días:</strong> Datos financieros eliminados completamente</li>
+                    <li><strong>90 días:</strong> Copias de respaldo eliminadas</li>
+                </ul>
+            </div>
+
+            <h2>Métodos de Eliminación</h2>
+
+            <h3>Opción 1: Desde la Aplicación (Recomendado)</h3>
+            
+            <ol class="steps">
+                <li>
+                    <strong>Abre Dinely</strong><br>
+                    Inicia sesión en tu cuenta
+                </li>
+                <li>
+                    <strong>Ve a Configuración</strong><br>
+                    Toca el ícono de configuración (⚙️)
+                </li>
+                <li>
+                    <strong>Selecciona "Cuenta"</strong><br>
+                    Busca la sección de gestión de cuenta
+                </li>
+                <li>
+                    <strong>Toca "Eliminar Cuenta"</strong><br>
+                    Lee la advertencia cuidadosamente
+                </li>
+                <li>
+                    <strong>Confirma la eliminación</strong><br>
+                    Ingresa tu contraseña para confirmar
+                </li>
+                <li>
+                    <strong>Listo</strong><br>
+                    Recibirás un correo de confirmación
+                </li>
+            </ol>
+
+            <h3>Opción 2: Solicitud por Correo Electrónico</h3>
+
+            <p>Si no puedes acceder a la app, envía un correo a:</p>
+
+            <div class="form-container">
+                <h3>📧 Información para la Solicitud</h3>
+                <p><strong>Para:</strong> phol.taquiri@example.com</p>
+                <p><strong>Asunto:</strong> Solicitud de Eliminación de Datos - Dinely</p>
+                <p><strong>Incluye en el correo:</strong></p>
+                <ul>
+                    <li>Tu nombre completo</li>
+                    <li>Correo electrónico registrado en Dinely</li>
+                    <li>Motivo de la eliminación (opcional)</li>
+                    <li>Confirmación: "Solicito la eliminación completa de mis datos"</li>
+                </ul>
+
+                <div class="button-group">
+                    <a href="mailto:phol.taquiri@example.com?subject=Solicitud%20de%20Eliminación%20de%20Datos%20-%20Dinely&body=Nombre%20completo:%0D%0ACorreo%20registrado:%0D%0A%0D%0ASolicito%20la%20eliminación%20completa%20de%20mis%20datos%20de%20Dinely.%0D%0A%0D%0AMotivo%20(opcional):%0D%0A" 
+                       class="btn btn-primary">
+                        📧 Enviar Solicitud por Email
+                    </a>
+                </div>
+            </div>
+
+            <h2>Proceso de Verificación</h2>
+
+            <p>Para proteger tu cuenta, verificaremos tu identidad antes de proceder:</p>
+
+            <ol>
+                <li>Recibirás un correo de confirmación en tu email registrado</li>
+                <li>Deberás hacer click en el enlace de verificación</li>
+                <li>Una vez verificado, iniciaremos el proceso de eliminación</li>
+                <li>Recibirás una confirmación final cuando se complete</li>
+            </ol>
+
+            <h2>Datos que se Conservan (Temporalmente)</h2>
+
+            <p>Por razones legales y de seguridad, algunos datos se conservan temporalmente:</p>
+
+            <div class="warning-box">
+                <h3>Retención Temporal</h3>
+                <ul>
+                    <li><strong>Logs de seguridad:</strong> 90 días (para prevenir fraude)</li>
+                    <li><strong>Información de facturación:</strong> 5 años (requisito legal)</li>
+                    <li><strong>Datos anonimizados:</strong> Indefinidamente (para estadísticas)</li>
+                </ul>
+                <p><strong>Nota:</strong> Los datos anonimizados no pueden vincularse a tu identidad.</p>
+            </div>
+
+            <h2>Alternativas a la Eliminación</h2>
+
+            <p>Antes de eliminar tu cuenta, considera estas opciones:</p>
+
+            <div class="highlight-box">
+                <h3>🔄 Otras Opciones</h3>
+                <ul>
+                    <li>
+                        <strong>Exportar datos:</strong> Descarga toda tu información antes de eliminar
+                    </li>
+                    <li>
+                        <strong>Desactivar cuenta:</strong> Oculta tu cuenta sin eliminar datos (reversible)
+                    </li>
+                    <li>
+                        <strong>Eliminar datos específicos:</strong> Borra solo ciertas transacciones o cuentas
+                    </li>
+                    <li>
+                        <strong>Cerrar sesión:</strong> Simplemente deja de usar la app
+                    </li>
+                </ul>
+            </div>
+
+            <h2>Exportar tus Datos</h2>
+
+            <p>Antes de eliminar tu cuenta, puedes exportar toda tu información:</p>
+
+            <ol class="steps">
+                <li>
+                    <strong>Abre Dinely</strong><br>
+                    Ve a Configuración → Privacidad
+                </li>
+                <li>
+                    <strong>Selecciona "Exportar Datos"</strong><br>
+                    Elige el formato (CSV, PDF, JSON)
+                </li>
+                <li>
+                    <strong>Descarga el archivo</strong><br>
+                    Guárdalo en un lugar seguro
+                </li>
+                <li>
+                    <strong>Verifica el contenido</strong><br>
+                    Asegúrate de tener todo lo necesario
+                </li>
+            </ol>
+
+            <h2>Preguntas Frecuentes</h2>
+
+            <h3>¿Puedo recuperar mi cuenta después de eliminarla?</h3>
+            <p>
+                No. La eliminación es permanente e irreversible. Una vez completado el proceso, 
+                no podrás recuperar tu cuenta ni tus datos.
+            </p>
+
+            <h3>¿Cuánto tiempo tarda el proceso?</h3>
+            <p>
+                El acceso se deshabilita inmediatamente. La eliminación completa de todos los datos 
+                y respaldos puede tardar hasta 90 días.
+            </p>
+
+            <h3>¿Qué pasa con mis datos en Google/Apple?</h3>
+            <p>
+                Si usaste Google Sign-In o Apple Sign-In, solo se eliminarán los datos en Dinely. 
+                Tu cuenta de Google/Apple permanece intacta.
+            </p>
+
+            <h3>¿Puedo crear una nueva cuenta después?</h3>
+            <p>
+                Sí, puedes crear una nueva cuenta con el mismo correo electrónico después de que 
+                se complete la eliminación (aproximadamente 30 días).
+            </p>
+
+            <h3>¿Se eliminarán mis datos de los respaldos?</h3>
+            <p>
+                Sí, todos los respaldos se eliminan en un plazo máximo de 90 días después de la solicitud.
+            </p>
+
+            <h3>¿Recibiré confirmación?</h3>
+            <p>
+                Sí, recibirás un correo electrónico cuando:
+            </p>
+            <ul>
+                <li>Recibamos tu solicitud</li>
+                <li>Se verifique tu identidad</li>
+                <li>Se complete la eliminación</li>
+            </ul>
+
+            <h2>Tus Derechos</h2>
+
+            <p>Además del derecho a la eliminación, también tienes derecho a:</p>
+
+            <ul>
+                <li><strong>Acceso:</strong> Ver todos tus datos almacenados</li>
+                <li><strong>Rectificación:</strong> Corregir datos incorrectos</li>
+                <li><strong>Portabilidad:</strong> Exportar tus datos</li>
+                <li><strong>Oposición:</strong> Oponerte al procesamiento de tus datos</li>
+                <li><strong>Limitación:</strong> Limitar cómo usamos tus datos</li>
+            </ul>
+
+            <div class="success-box">
+                <h3>✅ Compromiso de Privacidad</h3>
+                <p>
+                    En Dinely, respetamos tu privacidad y tu derecho a controlar tus datos. 
+                    Procesaremos tu solicitud de eliminación de manera rápida y completa, 
+                    cumpliendo con todas las leyes de protección de datos aplicables.
+                </p>
+            </div>
+
+            <h2>Legislación Aplicable</h2>
+
+            <p>Este proceso cumple con:</p>
+            <ul>
+                <li>Ley N° 29733 - Ley de Protección de Datos Personales (Perú)</li>
+                <li>GDPR - Reglamento General de Protección de Datos (UE)</li>
+                <li>CCPA - California Consumer Privacy Act (USA)</li>
+            </ul>
+
+            <div class="contact-box">
+                <h3>📧 ¿Necesitas Ayuda?</h3>
+                <p>
+                    Si tienes preguntas sobre el proceso de eliminación de datos o necesitas 
+                    asistencia, contáctanos:
+                </p>
+                <p style="margin-top: 20px;">
+                    <strong>Desarrollador:</strong> Phol Edwin Taquiri Rojas<br>
+                    <strong>Email:</strong> <a href="mailto:phol.taquiri@example.com">phol.taquiri@example.com</a><br>
+                    <strong>Ubicación:</strong> Huancayo, Perú
+                </p>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                    Responderemos a tu solicitud en un plazo máximo de 72 horas.
+                </p>
+            </div>
+
+            <div class="button-group" style="justify-content: center; margin-top: 40px;">
+                <a href="index.html" class="btn btn-secondary">← Volver al Inicio</a>
+                <a href="privacy_policy.html" class="btn btn-secondary">Ver Política de Privacidad</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Dinely</strong> - Gestión Financiera Personal</p>
+            <p>Desarrollado por Phol Edwin Taquiri Rojas</p>
+            <p>© 2025 Todos los derechos reservados</p>
+            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.8;">
+                Versión 1.0.0 | Última actualización: 6 de diciembre de 2025
+            </p>
+        </div>
+    </div>
+</body>
+</html>
